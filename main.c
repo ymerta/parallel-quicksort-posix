@@ -57,8 +57,14 @@ double readTimer();
 
 int main(int argc, const char *argv[])
 {
-    g_maxSize = 10000000;
-    g_maxWorkers = 8;
+    if (argc > 2)
+        g_maxSize = atoi(argv[2]);
+
+    // Komut satırından thread sayısı al
+    if (argc > 1)
+        g_maxWorkers = atoi(argv[1]);
+    else
+        g_maxWorkers = 4; // varsayılan
 
     if (g_maxSize > MAX_SIZE)
         g_maxSize = MAX_SIZE;
